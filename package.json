@@ -1,0 +1,11 @@
+{
+  "name": "prokopiev_angular",
+  "version": "0.1.0",
+  "description": "Prokopiev Ivan angular es6 test <ProkopievJohn@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prokopiev Ivan <ProkopievJohn@gmail.com>",
+  "license": "ISC"
+}
