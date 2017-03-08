@@ -1,0 +1,38 @@
+{
+  "name": "prokopiev_angular_server",
+  "version": "1.0.0",
+  "description": "server part for prokopiev_angular",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run clean && babel -d ./dist ./src -s && node ./dist/index.js",
+    "dev": "node server.js",
+    "clean": "rimraf dist/*"
+  },
+  "keywords": [
+    "Angular",
+    "ES6",
+    "Koa"
+  ],
+  "author": "Prokopiev Ivan <ProkopievJohn@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.0.1",
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-preset-env": "^1.2.1"
+  },
+  "devDependencies": {
+    "babel-register": "^6.23.0",
+    "rimraf": "^2.6.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "node": "current"
+        }
+      ]
+    ]
+  }
+}
