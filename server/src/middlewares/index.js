@@ -1,9 +1,9 @@
 import router from '../routers'
-import bodyparser from 'koa-bodyparser'
+import bodyParser from 'koa-bodyparser'
 
 export default ( app ) => {
     app
-        .use( bodyparser() )
+        .use( bodyParser() )
         .use( async ( ctx, next ) => {
             try {
                 await next();
