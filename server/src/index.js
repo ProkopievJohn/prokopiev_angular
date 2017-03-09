@@ -1,12 +1,11 @@
 import Koa from 'koa'
 import appConfig from './configs/server-config'
+import middlewares from './middlewares'
 
 const app = new Koa();
 
-console.log('fkasjd')
+middlewares(app);
 
-// process.env.PORT = process.env.PORT || 3000;
-
-// app.listen(appConfig.port, () => {
-//     console.log('app start')
-// });
+app.listen(appConfig.port, () => {
+    console.log('app start at ==>> ', appConfig.host + ':' + appConfig.port);
+});
