@@ -1,4 +1,5 @@
-import koaRouter from 'koa-router'
-import options from './options'
+import Router from './router'
 
-export default koaRouter(options)
+import './users'
+
+export default Router();
