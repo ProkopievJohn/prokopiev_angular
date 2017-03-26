@@ -13,4 +13,4 @@ export default ( app ) => {
     })
     app.use( routes.routes() )
     app.use( routes.allowedMethods() )
-}
+};
