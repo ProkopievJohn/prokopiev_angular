@@ -1,3 +1,5 @@
+// @flow
+
 import routes from '../routers'
 import bodyParser from 'koa-bodyparser'
 
