@@ -11,7 +11,6 @@ middlewares(app);
 
 mongoose.connect(config.databaseHost);
 
-// When successfully connected to mongodb
 mongoose.connection.on('connected', function () {
     console.log('Mongoose default connection open to ' + config.databaseHost);
     app.listen(config.port, () => {
@@ -19,7 +18,6 @@ mongoose.connection.on('connected', function () {
     });
 });
 
-// If the connection throws an error
 mongoose.connection.on('error', function (err) {
     console.log('Mongoose default connection error: ', err);
 });

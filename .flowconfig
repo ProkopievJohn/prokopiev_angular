@@ -3,5 +3,7 @@
 [include]
 
 [libs]
+server
+client
 
 [options]
