@@ -1,6 +1,6 @@
 // @flow
 
-import routes from '../routers'
+import router from '../routers'
 import bodyParser from 'koa-bodyparser'
 
 export default ( app ) => {
@@ -9,10 +9,10 @@ export default ( app ) => {
         try {
             await next();
         } catch (err) {
-            ctx.body = { message: err.message };
+            ctx.body = err || err.message;
             ctx.status = err.status || 500;
         }
     })
-    app.use( routes.routes() )
-    app.use( routes.allowedMethods() )
+    app.use(router.routes())
+        .use(router.allowedMethods());
 };

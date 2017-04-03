@@ -1,7 +1,7 @@
 // @flow
 
-import Router from './router'
+import router from './router'
 
 import './users'
 
-export default Router();
+export default router;
