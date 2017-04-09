@@ -12,9 +12,10 @@ const User = new Schema({
         type: String,
         required: true
     },
-    mail: {
+    email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     }
 });
 

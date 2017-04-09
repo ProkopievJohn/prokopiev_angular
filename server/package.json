@@ -4,8 +4,9 @@
   "description": "server part for prokopiev_angular",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && babel -d ./dist ./src -s && node ./dist/index.js",
-    "start": "nodemon server.js",
+    "build": "npm run clean && env NODE_ENV=production babel -d ./dist ./src -s && node ./dist/index.js",
+    "start": "env NODE_ENV=development nodemon server",
+    "test": "env NODE_ENV=test jest --coverage",
     "clean": "rimraf dist/*"
   },
   "keywords": [
@@ -13,7 +14,8 @@
     "ES6",
     "Koa",
     "babel",
-    "nodemon"
+    "nodemon",
+    "jest"
   ],
   "author": "Prokopiev Ivan <ProkopievJohn@gmail.com>",
   "license": "ISC",

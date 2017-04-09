@@ -1,6 +1,19 @@
 import m_Users from '../models/m_User'
 import config from '../configs/server-config'
 
+export const getAllUsers = async () => {
+    let data = config.defaultData();
+
+    try {
+        let users = await m_Users.find({}).lean().exec();
+
+        data.users = users;
+    } catch (err) {
+        console.log('error in user service: ', err);
+        data.errors.push('Can not find users');
+    }
+};
+
 export const getUserByName = async (username) => {
     let data = config.defaultData();
 
@@ -19,18 +32,17 @@ export const createUser = async (username, userpass, usermail) => {
     let query = {
             name: username,
             password: userpass,
-            mail: usermail
+            email: usermail
         },
-        update = {
-            name: username,
-            password: userpass,
-            mail: usermail
-        },
-        options = { upsert: true, new: true, setDefaultsOnInsert: true };
+        data = config.defaultData();
+    
+    try {
+        let user = await m_Users.create(query);
 
-    let a = await m_Users.findOneAndUpdate(query, update, options, (error, user) => {
-        console.log('user: ', user);
-        return user;
-    });
-
+        data.user = user;
+    } catch (err) {
+        console.log('error in create user: ', err);
+        data.errors.push('Can not create user with: name = ' + username + ' or/and email = ' + usermail)
+    }
+    return data;
 };

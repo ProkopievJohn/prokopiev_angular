@@ -1,8 +1,8 @@
 const conf = {
-    port: 3000,
-    host: "localhost",
+    port: process.env.PORT || 4000,
+    host: process.env.HOST || 'localhost',
 
-    databaseHost: 'mongodb://localhost:27017/prokopiev_angular',
+    databaseHost: process.env.NODE_ENV === 'test' ? 'mongodb://localhost:27017/test' : 'mongodb://localhost:27017/prokopiev_angular',
 
     defaultData() {
         return {
