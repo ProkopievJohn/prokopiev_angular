@@ -1,10 +1,19 @@
-const conf = {
-    port: process.env.PORT || 4000,
-    host: process.env.HOST || 'localhost',
+class Config {
+    constructor() {}
 
-    databaseHost: process.env.NODE_ENV === 'test' ? 'mongodb://localhost:27017/test' : 'mongodb://localhost:27017/prokopiev_angular',
+    getPort() {
+        return process.env.PORT || 4000;
+    }
 
-    defaultData() {
+    getHost() {
+        return process.env.HOST || 'localhost';
+    }
+
+    getDatabaseHost() {
+        return process.env.NODE_ENV === 'test' ? 'mongodb://localhost:27017/test' : 'mongodb://localhost:27017/prokopiev_angular';
+    }
+
+    getDefaultData() {
         return {
             errors: [],
             messages: [],
@@ -13,4 +22,4 @@ const conf = {
     }
 };
 
-export default conf;
+export default new Config();

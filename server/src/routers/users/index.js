@@ -13,7 +13,7 @@ router.get('/', async (ctx, next) => {
     } catch (err) {
         console.log('error in user router /get: ', err);
         
-        let data = config.defaultData();
+        let data = config.getDefaultData();
         data.errors.push('Server error');
         ctx.status = 500;
         ctx.data = data;
@@ -29,7 +29,7 @@ router.get('/:name', async (ctx, next) => {
     } catch (err) {
         console.log('error in user router /get/:name: ', err);
 
-        let data = config.defaultData();
+        let data = config.getDefaultData();
         data.errors.push('Server error');
         ctx.status = 500;
         ctx.data = data;
@@ -49,7 +49,7 @@ router.post('/new', async (ctx, next) => {
     } catch (err) {
         console.log('error in user router /post/new: ', err);
 
-        let data = config.defaultData();
+        let data = config.getDefaultData();
         data.errors.push('Server error');
         ctx.status = 500;
         ctx.data = data;

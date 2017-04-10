@@ -1,5 +1,3 @@
-// @flow
-
 import Koa from 'koa'
 import config from './configs/server-config'
 import middlewares from './middlewares'
@@ -9,15 +7,15 @@ const app = new Koa();
 
 middlewares(app);
 
-mongoose.connect(config.databaseHost);
+mongoose.connect(config.getDatabaseHost());
 
-mongoose.connection.on('connected', function () {
-    console.log('Mongoose default connection open to ' + config.databaseHost);
-    app.listen(config.port, () => {
-        console.log('app start at ==>> ', config.host + ':' + config.port);
+mongoose.connection.on('connected', () => {
+    console.log('Mongoose default connection open to ' + config.getDatabaseHost());
+    app.listen(config.getPort(), () => {
+        console.log('app start at ==>> ', config.getHost() + ':' + config.getPort());
     });
 });
 
-mongoose.connection.on('error', function (err) {
+mongoose.connection.on('error', (err) => {
     console.log('Mongoose default connection error: ', err);
 });

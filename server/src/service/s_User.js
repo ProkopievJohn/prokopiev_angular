@@ -2,7 +2,7 @@ import m_Users from '../models/m_User'
 import config from '../configs/server-config'
 
 export const getAllUsers = async () => {
-    let data = config.defaultData();
+    let data = config.getDefaultData();
 
     try {
         let users = await m_Users.find({}).lean().exec();
@@ -12,10 +12,11 @@ export const getAllUsers = async () => {
         console.log('error in user service: ', err);
         data.errors.push('Can not find users');
     }
+    return data;
 };
 
 export const getUserByName = async (username) => {
-    let data = config.defaultData();
+    let data = config.getDefaultData();
 
     try {
         let user = await m_Users.findOne({name: username}).lean().exec();
@@ -34,7 +35,7 @@ export const createUser = async (username, userpass, usermail) => {
             password: userpass,
             email: usermail
         },
-        data = config.defaultData();
+        data = config.getDefaultData();
     
     try {
         let user = await m_Users.create(query);

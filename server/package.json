@@ -6,8 +6,9 @@
   "scripts": {
     "build": "npm run clean && env NODE_ENV=production babel -d ./dist ./src -s && node ./dist/index.js",
     "start": "env NODE_ENV=development nodemon server",
-    "test": "env NODE_ENV=test jest --coverage",
-    "clean": "rimraf dist/*"
+    "test": "npm run clean-coverage && env NODE_ENV=test jest --coverage",
+    "clean": "rimraf dist/*",
+    "clean-coverage": "rimraf coverage/*"
   },
   "keywords": [
     "Angular",
@@ -24,6 +25,7 @@
     "babel-core": "^6.23.1",
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.2.1",
+    "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.22.0",
     "koa": "^2.2.0",
     "koa-bodyparser": "^4.1.0",
@@ -36,10 +38,12 @@
     "babel-register": "^6.23.0",
     "jest": "^19.0.2",
     "nodemon": "^1.11.0",
+    "regenerator-runtime": "^0.10.3",
     "rimraf": "^2.6.1"
   },
   "babel": {
     "presets": [
+      "react",
       "stage-0",
       [
         "env",
