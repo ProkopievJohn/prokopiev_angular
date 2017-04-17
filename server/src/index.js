@@ -1,11 +1,6 @@
-import Koa from 'koa'
 import config from './configs/server-config'
-import middlewares from './middlewares'
 import mongoose from 'mongoose'
-
-const app = new Koa();
-
-middlewares(app);
+import app from './app'
 
 mongoose.connect(config.getDatabaseHost());
 
@@ -19,9 +14,3 @@ process.env.NODE_ENV !== 'test' && mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
     console.log('Mongoose default connection error: ', err);
 });
-
-export default () => {
-    mongoose.connection.on('connected', () => {
-        app.listen(config.getPort());
-    });
-};
