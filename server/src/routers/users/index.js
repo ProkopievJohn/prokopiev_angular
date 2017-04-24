@@ -45,6 +45,7 @@ router.post('/new', async (ctx, next) => {
 
     try {
         let user = await createUser(name, password, email);
+        ctx.redirect('/home');
         ctx.body = user;
     } catch (err) {
         console.log('error in user router /post/new: ', err);

@@ -21,25 +21,32 @@ afterAll(async () => {
 });
 
 describe('Koa tests', () => {
-    test('GET/ users/ it must return datas', () => {
-        // let data = config.getDefaultData();
-        let toBeUsers = [
-            {name: 'name1', password: 'password1', email: 'email1@gmail.com'},
-            {name: 'name2', password: 'password2', email: 'email2@gmail.com'},
-            {name: 'name3', password: 'password3', email: 'email3@gmail.com'},
-            {name: 'name4', password: 'password4', email: 'email4@gmail.com'},
-            {name: 'name5', password: 'password5', email: 'email5@gmail.com'}
-        ];
-        request
+    test('GET/ users/ it must return datas', async () => {
+        await request
             .get('/users')
             .expect(200)
             .then( res => {
                 const { users } = res.body;
-                console.log('users: ', users);
-                expect( users ).toContain( toBeUsers );
+                users.map(user => {
+                    delete user.__v;
+                    delete user._id;
+                    return user;
+                })
+                expect( users ).toEqual( expect.arrayContaining( startUsersList ));
             });
     });
 
+    test('POST/ user/ it must create user', async () => {
+        await request
+            .post('/users/new')
+            .send( newUser )
+            .expect(302)
+            .expect('Location', /\/home/)
+            .then( res => {
+                const { user } = res.body;
+                expect( user ).toEqual( expect.objectContaining( newUser ));
+            });
+    });
 });
 
 const clearDatabase = async () => {
@@ -47,12 +54,13 @@ const clearDatabase = async () => {
 };
 
 const createDatabase = async () => {
-    const array = [
-        {name: 'name1', password: 'password1', email: 'email1@gmail.com'},
-        {name: 'name2', password: 'password2', email: 'email2@gmail.com'},
-        {name: 'name3', password: 'password3', email: 'email3@gmail.com'},
-        {name: 'name4', password: 'password4', email: 'email4@gmail.com'},
-        {name: 'name5', password: 'password5', email: 'email5@gmail.com'}
-    ];
-    await m_User.create(array);
+    await m_User.create(startUsersList);
 };
+
+const startUsersList = [
+    {name: 'name1', password: 'password1', email: 'email1@gmail.com'},
+    {name: 'name2', password: 'password2', email: 'email2@gmail.com'},
+    {name: 'name3', password: 'password3', email: 'email3@gmail.com'}
+];
+
+const newUser = {name: 'name4', password: 'password4', email: 'email4@gmail.com'};

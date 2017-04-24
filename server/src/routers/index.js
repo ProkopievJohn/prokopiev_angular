@@ -1,5 +1,3 @@
-// @flow
-
 import router from './router'
 
 import './users'
