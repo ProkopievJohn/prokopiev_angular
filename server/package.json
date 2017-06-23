@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "babel-jest": "^19.0.0",
-    "babel-register": "^6.23.0",
+    "babel-register": "^6.24.1",
     "jest": "^19.0.2",
     "nodemon": "^1.11.0",
     "regenerator-runtime": "^0.10.3",
